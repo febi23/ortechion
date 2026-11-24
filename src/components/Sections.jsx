@@ -471,7 +471,7 @@ export function Footer() {
     { h: 'Services', l: ['Implementation', 'Custom Development', 'Mobile Apps', 'Integrations', 'Support'] },
     { h: 'Company', l: ['About us', 'Careers', 'Case studies', 'Blog', 'Contact'] },
   ];
-  const LOGIN_URL = 'https://ortechion.odoo.com/web/login';
+  const LOGIN_URL = 'https://ortechion.odoo.com/web';
   return (
     <footer className="footer">
       <div className="container footer-inner">

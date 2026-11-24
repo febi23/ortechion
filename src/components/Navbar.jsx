@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowRight, LogIn } from 'lucide-react';
 import { Logo } from './ui.jsx';
 
-export const LOGIN_URL = 'https://ortechion.odoo.com/web/login';
+export const LOGIN_URL = 'https://ortechion.odoo.com/web';
 
 const LINKS = [
   { href: '#modules', label: 'Modules' },
