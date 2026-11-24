@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { CATEGORIES, MODULES, SERVICES, INDUSTRIES, PROCESS, TESTIMONIALS } from '../data.js';
 import { SectionHeader, TiltCard, Counter, Logo, fadeUp } from './ui.jsx';
+import { LOGIN_URL, useTeamLogin } from './Navbar.jsx';
 
 /* ---------------- Marquee ---------------- */
 export function Marquee() {
@@ -471,7 +472,7 @@ export function Footer() {
     { h: 'Services', l: ['Implementation', 'Custom Development', 'Mobile Apps', 'Integrations', 'Support'] },
     { h: 'Company', l: ['About us', 'Careers', 'Case studies', 'Blog', 'Contact'] },
   ];
-  const LOGIN_URL = 'https://ortechion.odoo.com/web';
+  const { isTeam, markTeam } = useTeamLogin();
   return (
     <footer className="footer">
       <div className="container footer-inner">
@@ -488,7 +489,7 @@ export function Footer() {
           <div key={c.h} className="footer-col">
             <h4>{c.h}</h4>
             {c.l.map((x) => <a key={x} href="#top">{x}</a>)}
-            {c.h === 'Company' && <a href={LOGIN_URL}>Team Login</a>}
+            {c.h === 'Company' && <a href={LOGIN_URL} onClick={markTeam}>{isTeam ? 'Open ERP' : 'Team Login'}</a>}
           </div>
         ))}
       </div>

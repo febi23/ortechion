@@ -1,9 +1,23 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowRight, LogIn } from 'lucide-react';
+import { Menu, X, ArrowRight, LogIn, LayoutDashboard } from 'lucide-react';
 import { Logo } from './ui.jsx';
 
 export const LOGIN_URL = 'https://ortechion.odoo.com/web';
+const TEAM_KEY = 'ortechion_team';
+
+// The ERP session lives on another domain and can't be read from here, so we
+// remember on this device that the visitor has used the team login before.
+export function useTeamLogin() {
+  const [isTeam, setIsTeam] = useState(false);
+  useEffect(() => {
+    try { setIsTeam(localStorage.getItem(TEAM_KEY) === '1'); } catch {}
+  }, []);
+  const markTeam = () => {
+    try { localStorage.setItem(TEAM_KEY, '1'); } catch {}
+  };
+  return { isTeam, markTeam, label: isTeam ? 'Open ERP' : 'Login', Icon: isTeam ? LayoutDashboard : LogIn };
+}
 
 const LINKS = [
   { href: '#modules', label: 'Modules' },
@@ -16,6 +30,7 @@ const LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { isTeam, markTeam, label, Icon } = useTeamLogin();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -38,8 +53,8 @@ export default function Navbar() {
             <a key={l.href} href={l.href}>{l.label}</a>
           ))}
         </nav>
-        <a href={LOGIN_URL} className="btn btn-ghost nav-login" title="Team login">
-          <LogIn size={16} /> Login
+        <a href={LOGIN_URL} onClick={markTeam} className="btn btn-ghost nav-login" title={isTeam ? 'Open your ERP workspace' : 'Team login'}>
+          <Icon size={16} /> {label}
         </a>
         <a href="#contact" className="btn btn-primary nav-cta">
           Get a Demo <ArrowRight size={16} />
@@ -68,7 +83,7 @@ export default function Navbar() {
                 {l.label}
               </motion.a>
             ))}
-            <a href={LOGIN_URL} className="btn btn-ghost"><LogIn size={16} /> Team Login</a>
+            <a href={LOGIN_URL} onClick={markTeam} className="btn btn-ghost"><Icon size={16} /> {isTeam ? 'Open ERP' : 'Team Login'}</a>
             <a href="#contact" className="btn btn-primary" onClick={() => setOpen(false)}>Get a Demo</a>
           </motion.nav>
         )}
