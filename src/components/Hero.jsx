@@ -33,7 +33,7 @@ export default function Hero() {
           </motion.span>
 
           <h1>
-            {['One', 'platform', 'to', 'run'].map((w, i) => (
+            {['One', 'ERP', 'platform', 'to', 'run'].map((w, i) => (
               <motion.span
                 key={w}
                 className="word"

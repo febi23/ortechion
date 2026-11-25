@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
 import {
   ArrowRight, Check, Apple, Smartphone, WifiOff, ScanLine, MapPin, Bell, Fingerprint,
-  Quote, ChevronLeft, ChevronRight, Mail, Phone, Send, CheckCircle2,
-  TrendingUp, Package, Users, Wallet, Linkedin, Twitter, Github, Instagram,
+  Quote, ChevronLeft, ChevronRight, Mail, Send, CheckCircle2,
+  TrendingUp, Package, Users, Wallet,
 } from 'lucide-react';
 import { CATEGORIES, MODULES, SERVICES, INDUSTRIES, PROCESS, TESTIMONIALS } from '../data.js';
 import { SectionHeader, TiltCard, Counter, Logo, fadeUp } from './ui.jsx';
@@ -408,7 +408,6 @@ export function Contact() {
           </motion.ul>
           <motion.div className="contact-lines" variants={fadeUp} custom={4}>
             <a href="mailto:hello@ortechion.com"><Mail size={18} /> hello@ortechion.com</a>
-            <a href="tel:+10000000000"><Phone size={18} /> +1 (000) 000-0000</a>
           </motion.div>
         </motion.div>
 
@@ -479,11 +478,6 @@ export function Footer() {
         <div className="footer-brand">
           <Logo />
           <p>Complete ERP software and mobile app development for ambitious businesses worldwide.</p>
-          <div className="socials">
-            {[Linkedin, Twitter, Github, Instagram].map((I, i) => (
-              <a key={i} href="#top" aria-label="social link"><I size={18} /></a>
-            ))}
-          </div>
         </div>
         {cols.map((c) => (
           <div key={c.h} className="footer-col">
